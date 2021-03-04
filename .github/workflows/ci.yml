@@ -18,8 +18,8 @@ jobs:
         key: npm-${{ hashFiles('package.json') }}
     - name: npm install
       run: npm i
-    - name: ESLint
-      run: npm run eslint
+#     - name: ESLint
+#       run: npm run eslint
     - name: Typecheck
       run: npm run typecheck
     - name: Test
