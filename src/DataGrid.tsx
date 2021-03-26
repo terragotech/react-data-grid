@@ -99,8 +99,8 @@ export interface DataGridProps<R, K extends keyof R, SR = unknown>
    * 4. Update all cells under a given cell by double clicking the cell's fill handle.
    */
   onRowsUpdate?: <E extends RowsUpdateEvent>(event: E) => void;
-  onRowsChange?: (rows: R[]) => void;
-  onKeyDown?: (rows: R[]) => void;
+  onCellBlur?: (rows: R[]) => void;
+  onChange?: (rows: R[]) => void;
 
   /**
    * Dimensions props
@@ -192,8 +192,8 @@ function DataGrid<R, K extends keyof R, SR>(
     summaryRows,
     rowKey,
     onRowsUpdate,
-    onRowsChange,
-    onKeyDown,
+    onCellBlur,
+    onChange,
     // Dimensions props
     rowHeight = 35,
     headerRowHeight = rowHeight,
@@ -540,7 +540,7 @@ function DataGrid<R, K extends keyof R, SR>(
 
     const updatedRows = [...rawRows];
     updatedRows[getRawRowIdx(selectedPosition.rowIdx)] = selectedPosition.row;
-    onRowsChange?.(updatedRows);
+    onCellBlur?.(updatedRows);
   }
 
   function handleCopy() {
@@ -667,10 +667,10 @@ function DataGrid<R, K extends keyof R, SR>(
   function handleRowChange(row: Readonly<R>, commitChanges?: boolean) {
     const updatedRows = [...rawRows];
     updatedRows[getRawRowIdx(selectedPosition.rowIdx)] = row;
-    if (onKeyDown) onKeyDown(updatedRows);
+    if (onChange) onChange(updatedRows);
     if (selectedPosition.mode === "SELECT") return;
     if (commitChanges) {
-      onRowsChange?.(updatedRows);
+      onCellBlur?.(updatedRows);
       closeEditor();
     } else {
       setSelectedPosition((position) => ({ ...position, row }));
