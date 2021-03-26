@@ -890,7 +890,7 @@ function DataGrid<R, K extends keyof R, SR>(
       return {
         mode: "EDIT",
         idx: selectedPosition.idx,
-        onChange: handleKeyDown,
+        onKeyDown: handleKeyDown,
         editorPortalTarget,
         editorContainerProps: {
           rowHeight,
@@ -913,7 +913,7 @@ function DataGrid<R, K extends keyof R, SR>(
       mode: "SELECT",
       idx: selectedPosition.idx,
       onFocus: handleFocus,
-      onChange: handleKeyDown,
+      onKeyDown: handleKeyDown,
       dragHandleProps:
         enableCellDragAndDrop && isCellEditable(selectedPosition)
           ? { onMouseDown: handleMouseDown, onDoubleClick: handleDoubleClick }
@@ -961,7 +961,7 @@ function DataGrid<R, K extends keyof R, SR>(
             onFocus={
               selectedPosition.rowIdx === rowIdx ? handleFocus : undefined
             }
-            onChange={
+            onKeyDown={
               selectedPosition.rowIdx === rowIdx ? handleKeyDown : undefined
             }
           />
@@ -1078,7 +1078,7 @@ function DataGrid<R, K extends keyof R, SR>(
             ref={focusSinkRef}
             tabIndex={0}
             className="rdg-focus-sink"
-            onChange={handleKeyDown}
+            onKeyDown={handleKeyDown}
           />
           <div
             style={{ height: Math.max(rows.length * rowHeight, clientHeight) }}
