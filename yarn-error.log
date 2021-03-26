@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "name": "react-data-grid",
-    "version": "v1.0.0",
+    "version": "8.0.3",
     "license": "MIT",
     "description": "Excel-like grid component built with React, with editors, keyboard navigation, copy & paste, and the like",
     "keywords": [
